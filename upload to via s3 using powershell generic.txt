@@ -1,0 +1,44 @@
+example:
+
+---------------------
+CONVERT TO CSV UTF8 USING SSIS
+open Visual Studio 2019 > create new project > search for SSIS > select Integration Service Project > save in project folder
+
+drag and drop data flow task > double click into it
+drag and drop a flat file source ----> and connect it to a flat file destination (use the blue arrow)
+
+double click into flat flie source > Create New Flat File Connection Manager
+paste file name (no ext into name and desc)
+add file path into File Name:
+Delimeted
+" Text Qualifier
+Set code page to UTF8 65001
+Advanced -> select all set to 255
+Check Header Row Checbox
+
+double click into flat flie destination > Create New Flat File Connection Manager > Delimted > OK
+paste file_name_out (no ext into name and desc)
+add file path into File Name:
+Delimeted
+" Text Qualifier
+Set code page to UTF8 65001
+Advanced -> select all set to 255
+Check Header Row Checbox
+RIGHT CLICK FLATE FILE DESTINATION > PROPERTIES > SET ESCAPE QUALIFIER TO TRUE
+
+
+RUN
+
+---------------------
+
+
+RIGHT CLICK > 7ZIP > ADD TO ARCHIVE > GZIP > 1-FASTEST > OK
+
+SHIFT+RIGHT CLICK  > open folder in power shell
+aws s3 cp LOCAL_PATH.csv.gz s3://S3_PATH.csv.gz --profile PROFILE
+aws s3 cp <SOURCE FILE AND PATH TO COPY> s3://<FOLDER>/<SAME FILE NAME AS SOURCE FILE WITH EXTENSION> --profile VIA
+
+make sure there are no spaces!
+cp is copy?
+
+aws s3 ls s3://DIRECTORY_PATH/ --profile PROFILE
